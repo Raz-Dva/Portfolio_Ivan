@@ -571,7 +571,7 @@ footer {
 .to-top {
     position: fixed;
     display: inline-block;
-    bottom: 100px;
+    bottom: 60px;
     right: 20px;
     text-align: center;
     cursor: pointer;
