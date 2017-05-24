@@ -525,11 +525,17 @@ main {
 .about{
     background:  url(../images/table_bg.png) 0 0 no-repeat;
     background-size: cover;
-    /*height: 100vh;
-    min-height: auto;*/
+    height: 100vh;
+    /*min-height: auto;*/
 }
 .about_block{
     padding: 70px 0;
+    transform-style: preserve-3d;
+    -webkit-transform: perspective(800px);
+    -moz-transform: perspective(800px);
+    -ms-transform: perspective(800px);
+    -o-transform: perspective(800px);
+    transform: perspective(800px);
 }
 .about_title{
     font-size: 40px;
@@ -557,6 +563,21 @@ main {
     margin-right: 5px;
 }
 /*=======================animation about=================*/
+.about_block-top{
+    -webkit-transition:all 1s ease-out 0s;
+    -moz-transition:all 1s ease-out 0s;
+    -o-transition:all 1s ease-out 0s;
+    transition:all 1s ease-out 0s;
+}
+.about_top_animation{
+
+    -webkit-transform: translate3d(0, 0, 200px) rotateY(-30deg);
+    -moz-transform: translate3d(0, 0, 300px) rotateY(-30deg);
+    -ms-transform: translate3d(0, 0, 200px) rotateY(-30deg);
+    -o-transform: translate3d(0, 0, 200px) rotateY(-30deg);
+    transform: translate3d(0, 0, 200px) rotateY(-30deg);
+    opacity:0;
+}
 
 /*=================footer==========================*/
 footer {

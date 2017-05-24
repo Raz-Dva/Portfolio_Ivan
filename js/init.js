@@ -25,7 +25,7 @@ $(document).ready(function () {
             k = 5;
             for (i = 0; i < item_menu.length; ++i) {
                 j++;
-                k+=10;
+                k += 10;
                 $(".menu_visible").find(item_menu[i]).css({
                     "animation-delay": (j / 10) + "s",
                     "transition-delay": ((k) / 100) + "s"
@@ -33,11 +33,18 @@ $(document).ready(function () {
             }
         }
     });
-    // =================menu scroll=============
+    /*if ( ($("#about").offset().top)- ($(window).height()) + 100 < $(window).scrollTop()) {
+        $(".about_block-top").css("transition-duration", "0s").removeClass("about_top_animation");
+    }*/
+
+    // =================menu scrolling=============
     $(window).scroll(function () {
         var topMenu = 36;
         var valTop;
-        var scroll = $(this).scrollTop();
+        var scroll = $(window).scrollTop();
+        var offsetTop = $("#about").offset().top;
+        var heightWin = $(window).height();
+        // =========================
         if (topMenu > scroll) {
             valTop = topMenu - scroll;
         }
@@ -45,7 +52,10 @@ $(document).ready(function () {
             valTop = 0;
         }
         $("#menu_js, #but_mnenu").css("top", valTop + "px");
-
+        // =============================
+        if ((offsetTop - heightWin) +300 <= scroll) {
+            $(".about_block-top").removeClass("about_top_animation");
+        }
     });
     //==============tooltip====
     // $('[data-toggle="tooltip"]').tooltip();
