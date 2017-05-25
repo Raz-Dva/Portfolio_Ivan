@@ -53,7 +53,7 @@ $(document).ready(function () {
         }
         $("#menu_js, #but_mnenu").css("top", valTop + "px");
         // =============================
-        if ((offsetTop - heightWin) +300 <= scroll) {
+        if ((offsetTop - heightWin) +3 00 <= scroll) {
             $(".about_block-top").removeClass("about_top_animation");
         }
     });
