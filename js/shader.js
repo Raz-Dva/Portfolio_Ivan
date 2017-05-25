@@ -23,7 +23,7 @@ $(function() {
 
             MESH: {
 				ambient: '#040404', // Default
-                diffuse: '#868585', // Default
+                diffuse: '#818181', // Default
                 width: 1.2, // Triangle Width
                 height: 1.2, // Triangle Height
                 depth: 0, // Transparency of the triangles
@@ -37,8 +37,8 @@ $(function() {
 
             LIGHT: {
 				autopilot: true, // Set this to true if you want the light to follow your mouse cursor
-				ambient: '#7d7d7d',
-                diffuse: '#50402e',
+				ambient: '#737373',
+                diffuse: '#737373',
 				count: 1.1, // Contrast
                 zOffset: 500,
 				
