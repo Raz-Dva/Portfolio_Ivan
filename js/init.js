@@ -2,15 +2,18 @@
  * Created by user pc on 27.02.2017.
  */
 $(document).ready(function () {
-// ================btn down=======
-    $("#about").click(function(){
-        $('html, body').animate({scrollTop:($("header").outerHeight(true))
-        },500);
-    });
-
-
-    var menuLeft = $("#menu_js"), j, k, i,
+    var menuLeft = $("#menu_js"),
+        j, k, i,
         item_menu = menuLeft.children();
+
+// ================btn down=======
+    $(".link-scrolling").on("click", function (event) {
+        event.preventDefault();
+        var hash = this.hash;
+        $('html, body').animate({
+            scrollTop: ($(hash).offset().top)
+        }, 500);
+    });
 
     // ==========button menu===============
     $(".button_menu").click(function () {
@@ -40,9 +43,10 @@ $(document).ready(function () {
             }
         }
     });
-    /*if ( ($("#about").offset().top)- ($(window).height()) + 100 < $(window).scrollTop()) {
-        $(".about_block-top").css("transition-duration", "0s").removeClass("about_top_animation");
-    }*/
+    /* var animationRight = $(".personal_info_row:even");
+     var animationLeft = $(".personal_info_row:odd");
+     var allElem = $(".personal_info_row");
+     var NewElem = [];*/
 
     // =================menu scrolling=============
     $(window).scroll(function () {
@@ -60,10 +64,75 @@ $(document).ready(function () {
         }
         $("#menu_js, #but_mnenu").css("top", valTop + "px");
         // =============================
-        if ((offsetTop - heightWin) +300 <= scroll) {
+        if ((offsetTop - heightWin) + 300 <= scroll) {
             $(".about_block-top").removeClass("about_top_animation");
         }
-    });    
+
+        $("#element").each(function () {
+            var element = this;
+            var $element = $(element);
+            var element_bounding = element.getBoundingClientRect();
+
+            // console.log(element_bounding.top + " element_bounding");
+            // console.log(heightWin+" heightWin")
+
+        });
+
+    });
+
+    /* Функция start будет запущена после полной загрузки документа и будет вызывать функцию
+     time через каждую секунду */
+var q =100;
+    function tme(arg) {
+        q=1+arg;
+        // console.log(q);
+    }
+
+    var timerId = setInterval(function() {
+        tme(q)
+    }, 100);
+    // setTimeout(function(){console.log(q)}, 4000);
+
+function draw(){
+    var canvas = document.getElementById("first_c");
+    var bezier = canvas.getContext('2d');
+    var x= 0;
+    x+=3;
+    bezier.beginPath();
+    bezier.strokeStyle = "red";
+    bezier.moveTo(0, 100);
+    bezier.bezierCurveTo(100, 120, 200, 80, 300, 100);
+    bezier.stroke();
+
+    bezier.fillStyle = "white";                                     // цвет заливки
+    bezier.fillRect(x, 120, 3, 3);
+
+    bezier.fillStyle = "white";                                     // цвет заливки
+    bezier.fillRect(200, 80, 3, 3);
+
+}
+    draw()
+
+
+    // bezier.lineTo(400, 300);
+    // bezier.lineTo(0, 300);
+    // bezier.closePath();
+    // bezier.fillStyle = "grey";
+    // bezier.fill();
+    /*canvas.each(function(){
+     var bezier = $(this).getContext('2d');
+     bezier.beginPath();
+     bezier.strokeStyle = "red";
+     bezier.moveTo(0, 100);
+     bezier.bezierCurveTo(115, 145, 215, 40, 400, 105);
+     bezier.lineTo(400, 300);
+     bezier.lineTo(0, 300);
+     bezier.closePath();
+     bezier.fillStyle = "grey";
+     bezier.fill();
+     bezier.stroke();
+
+     });*/
     //==============tooltip====
     // $('[data-toggle="tooltip"]').tooltip();
 
@@ -81,5 +150,4 @@ $(document).ready(function () {
     // });
     // ===================masked input==============
     // $('.mask-phone').mask('+ 38 (999) 999-99-99');
-
 });

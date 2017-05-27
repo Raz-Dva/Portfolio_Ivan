@@ -9,7 +9,7 @@
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/style-main.css" rel="stylesheet">
     <!--<link href="https://fonts.googleapis.com/css?family=Oswald|Yellowtail" rel="stylesheet">-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">-->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <![endif]-->
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="home">
 
     <button class="button_menu fixed" id="but_mnenu">
         <span class="button_menu-line bckg_white ln1 transform"></span>
@@ -29,8 +29,8 @@
         <div class="menu_block-interim"></div>
         <h4 class="menu_h color_yellow">*Personal portfolio</h4>
         <div class="menu_block-interim"></div>
-        <div class="menu_item"><a href="">Head</a></div>
-        <div class="menu_item"><a href="">About me</a></div>
+        <div class="menu_item"><a href="#home" class="link-scrolling">Head</a></div>
+        <div class="menu_item"><a href="#about" class="link-scrolling">About me</a></div>
         <div class="menu_item"><a href="">Qualification</a></div>
         <div class="menu_item"><a href="">My work</a></div>
         <div class="menu_item"><a href="">Quality</a></div>
@@ -72,7 +72,7 @@
                     согласно всем новым тенденциям и правилам используя html css javascript
                 </p>
                 <div class="text-center">
-                    <button class="btn btn_down btn_white" id="about">More below</button>
+                    <a href="#about" class="btn btn_down btn_white link-scrolling">More below</a>
                     <p class="color_white text-center head_arrow">    &darr;</p>
                 </div>
             </div>
@@ -92,61 +92,104 @@
                                 сможете увидеть и сами оценить мои работы.</p>
                             <h3 class="about_personal_info">Personal information</h3>
                         </div>
-
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">My birthday:</span>
-                            <span class="my-info">13 ноября 1987 года</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">Place of residence:</span>
-                            <span class="my-info">Ukraine, Kharkov</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">Nationality:</span>
-                            <span class="my-info">Ukrainian</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">Education:</span>
+                        <div class="about_block-info">
+                            <div class="personal_info_row" id="element">
+                                <span class="my-info color_yellow">My birthday:</span>
+                                <span class="my-info">13 ноября 1987 года</span>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">Place of residence:</span>
+                                <span class="my-info">Ukraine, Kharkov</span>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">Nationality:</span>
+                                <span class="my-info">Ukrainian</span>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">Education:</span>
                             <span class="my-info">In 2009 I entered Kharkov University of the Air Force.
                                 In 2010 I successfully finished it with a “specialist” degree.</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">Languages:</span>
-                            <span class="my-info">Ukrainian, Russian, English(intermedia)</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">Skype:</span>
-                            <span class="my-info">ivan-my-skype</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">e-mail:</span>
-                            <span class="my-info">my.poshta.goncharov@gmail.com</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">tell:</span>
-                            <span class="my-info">+380955057941</span>
-                        </div>
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">LinkedIn:</span>
-                            <span class="my-info">some text</span>
-                        </div>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">Languages:</span>
+                                <span class="my-info">Ukrainian, Russian, English(intermedia)</span>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">Skype:</span>
+                                <span class="my-info">ivan-my-skype</span>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">e-mail:</span>
+                                <span class="my-info">my.poshta.goncharov@gmail.com</span>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">tell:</span>
+                                <span class="my-info">+380955057941</span>
+                            </div>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">LinkedIn:</span>
+                                <span class="my-info">some text</span>
+                            </div>
 
-                        <div class="personal_info_row">
-                            <span class="my-info color_yellow">Github:</span>
-                            <span class="my-info">some text</span>
+                            <div class="personal_info_row">
+                                <span class="my-info color_yellow">Github:</span>
+                                <span class="my-info">some text</span>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
         </div>
+        <div class="qualification bckg_dark text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="qualification_title">Qualification</h2>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 ">
+                        <div class="qualification_icon overflow_hid img-circle">
+                            <img src="images/icon/html5.svg" alt="">
+                        </div>
+                        <p class="qualification_text">HTML5</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 ">
+                        <div class="qualification_icon overflow_hid img-circle">
+                            <img src="images/icon/css3.svg" alt="">
+                        </div>
+                        <p class="qualification_text">CSS3</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 ">
+                        <div class="qualification_icon overflow_hid img-circle">
+                            <img src="images/icon/jquery.svg" alt="">
+                        </div>
+                        <p class="qualification_text">Jquery</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 ">
+                        <div class="qualification_icon overflow_hid img-circle">
+                            <img src="images/icon/js.svg" alt="">
+                        </div>
+                        <p class="qualification_text">JS</p>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 ">
+                        <canvas  width="290" height="300" id="first_c"></canvas>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 ">
+                        <div id="text1" style="color: #fff;"></div>
+                        <canvas  width="290" height="300" id="first"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 </div>
 <footer></footer>
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/flat-surface-shader.js"></script>
-<script src="js/shader.js"></script>
+<script src="js/flat-surface-shader.min.js"></script>
+<script src="js/shader.min.js"></script>
 <script src="js/init.js"></script>
 </body>
 </html>

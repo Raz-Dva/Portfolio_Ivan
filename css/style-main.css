@@ -183,6 +183,7 @@ i.icon-center:before {
 }
 
 .btn_white {
+    color: #333;
     background: #fff;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
@@ -528,8 +529,11 @@ main {
     height: 100vh;
     min-height: 922px;
 }
-.about_block{
+.qualification,
+.about_block {
     padding: 70px 0;
+}
+.about_block{
     transform-style: preserve-3d;
     -webkit-transform: perspective(900px);
     -moz-transform: perspective(900px);
@@ -537,6 +541,7 @@ main {
     -o-transform: perspective(900px);
     transform: perspective(900px);
 }
+.qualification_title,
 .about_title{
     font-size: 40px;
     margin-bottom: 10px;
@@ -564,13 +569,12 @@ main {
 }
 /*=======================animation about=================*/
 .about_block-top{
-    -webkit-transition:all .7s ease-out 0s;
-    -moz-transition:all .7s ease-out 0s;
-    -o-transition:all .7s ease-out 0s;
-    transition:all .7s ease-out 0s;
+    -webkit-transition:all .9s ease-out 0s;
+    -moz-transition:all .9s ease-out 0s;
+    -o-transition:all .9s ease-out 0s;
+    transition:all .9s ease-out 0s;
 }
 .about_top_animation{
-
     -webkit-transform: translate3d(0, 0, 200px) rotateY(-30deg);
     -moz-transform: translate3d(0, 0, 300px) rotateY(-30deg);
     -ms-transform: translate3d(0, 0, 200px) rotateY(-30deg);
@@ -578,7 +582,31 @@ main {
     transform: translate3d(0, 0, 200px) rotateY(-30deg);
     opacity:0;
 }
-
+/*=========================qualification================*/
+.qualification{
+    color: #fff;
+}
+.qualification_icon{
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    border: 2px solid #F39C12;
+    padding: 20px 0 50px;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+.qualification_title{
+    margin-bottom: 70px;
+}
+.qualification_text{
+    margin-top: 7px;
+    font-weight: bold;
+    color: #F39C12;
+    font-size: 30px;
+}
+/*=========canvas===================*/
+canvas {
+    border:2px solid;
+}
 /*=================footer==========================*/
 footer {
     position: static;

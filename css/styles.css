@@ -119,3 +119,24 @@
 .icon-google-plus-square:before {
   content: "\7a";
 }
+.icon-1adobe-illustrator:before {
+  content: "\42";
+}
+.icon-ajax:before {
+  content: "\43";
+}
+.icon-inkscape:before {
+  content: "\44";
+}
+.icon-jquery-logo:before {
+  content: "\45";
+}
+.icon-jqueryui:before {
+  content: "\46";
+}
+.icon-js:before {
+  content: "\47";
+}
+.icon-sass-icon:before {
+  content: "\4b";
+}
