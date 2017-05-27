@@ -80,38 +80,68 @@ $(document).ready(function () {
 
     });
 
-    /* Функция start будет запущена после полной загрузки документа и будет вызывать функцию
-     time через каждую секунду */
-var q =100;
-    function tme(arg) {
-        q=1+arg;
-        // console.log(q);
+    /* var q = 100;
+
+     function tme(arg) {
+     q = 1 + arg;
+     // console.log(q);
+     }
+
+     var timerId = setInterval(function () {
+     tme(q)
+     }, 100);
+     // setTimeout(function(){console.log(q)}, 4000);
+
+     function draw() {
+     var canvas = document.getElementById("first_c");
+     var bezier = canvas.getContext('2d');
+     var x = 0;
+     x += 3;
+     bezier.fillStyle = "white";                                     // цвет заливки
+     bezier.fillRect(x, 120, 3, 3);
+
+     bezier.fillStyle = "white";                                     // цвет заливки
+     bezier.fillRect(200, 80, 3, 3);
+     }
+     draw();*/
+
+
+    var requestAnimationFrame = window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.msRequestAnimationFrame;
+
+    var x = 0;
+    drawPlast();
+    /*function drawMinus() {
+        x -= 1;
+        console.log(x);
+        var mainCanvas = document.getElementById("first");
+        var mainContext = mainCanvas.getContext('2d');
+        mainContext.fillStyle = "white";
+        mainContext.fillRect(x, 120, 3, 3);
+
+        var requestM = requestAnimationFrame(drawMinus);
+        if (x == 0) {
+            cancelAnimationFrame(requestM);
+            // drawPlast();
+        }
+    }*/
+
+    function drawPlast() {
+        x += 1;
+        console.log(x);
+        var mainCanvas = document.getElementById("first");
+        var mainContext = mainCanvas.getContext('2d');
+        mainContext.fillStyle = "white";
+        mainContext.fillRect(x, 120, 3, 3);
+
+        // var requestP = requestAnimationFrame(drawPlast);
+        /*if (x == 10) {
+            cancelAnimationFrame(requestP);
+            drawMinus();
+        }*/
     }
-
-    var timerId = setInterval(function() {
-        tme(q)
-    }, 100);
-    // setTimeout(function(){console.log(q)}, 4000);
-
-function draw(){
-    var canvas = document.getElementById("first_c");
-    var bezier = canvas.getContext('2d');
-    var x= 0;
-    x+=3;
-    bezier.beginPath();
-    bezier.strokeStyle = "red";
-    bezier.moveTo(0, 100);
-    bezier.bezierCurveTo(100, 120, 200, 80, 300, 100);
-    bezier.stroke();
-
-    bezier.fillStyle = "white";                                     // цвет заливки
-    bezier.fillRect(x, 120, 3, 3);
-
-    bezier.fillStyle = "white";                                     // цвет заливки
-    bezier.fillRect(200, 80, 3, 3);
-
-}
-    draw()
 
 
     // bezier.lineTo(400, 300);
