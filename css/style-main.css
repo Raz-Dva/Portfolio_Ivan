@@ -301,6 +301,7 @@ i.icon-center:before {
     right: 0;
     top: 36px;
     bottom: 0;
+    overflow: hidden;
 }
 .background-output{
     height: 100%;
@@ -600,31 +601,80 @@ main {
 }
 /*=======================animation about=================*/
 .about_block-top{
-    -webkit-transition:all .9s ease-out 0s;
-    -moz-transition:all .9s ease-out 0s;
-    -o-transition:all .9s ease-out 0s;
-    transition:all .9s ease-out 0s;
-}
-.about_top_animation{
     -webkit-transform: translate3d(0, 0, 200px) rotateY(-30deg);
     -moz-transform: translate3d(0, 0, 300px) rotateY(-30deg);
     -ms-transform: translate3d(0, 0, 200px) rotateY(-30deg);
     -o-transform: translate3d(0, 0, 200px) rotateY(-30deg);
     transform: translate3d(0, 0, 200px) rotateY(-30deg);
     opacity:0;
+    -webkit-transition:all .9s ease-out 0s;
+    -moz-transition:all .9s ease-out 0s;
+    -o-transition:all .9s ease-out 0s;
+    transition:all .9s ease-out 0s;
+}
+.about_block-top.animation{
+    -webkit-transform: translate3d(0, 0, 0) rotateY(0deg);
+    -moz-transform: translate3d(0, 0, 0) rotateY(0deg);
+    -ms-transform: translate3d(0, 0, 0) rotateY(0deg);
+    -o-transform: translate3d(0, 0, 0) rotateY(0deg);
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+    opacity:1;
 }
 /*=========================qualification================*/
 .qualification{
     color: #fff;
 }
 .qualification_icon{
+    position: relative;
     height: 150px;
     width: 150px;
     margin: 0 auto;
-    border: 2px solid #F39C12;
+    /*border: 2px solid #F39C12;*/
     padding: 20px 0 50px;
     background-color: rgba(255, 255, 255, 0.12);
 }
+
+/*========progress ====================*/
+.qualification_icon:before{
+    content: '';
+    -webkit-border-radius:75px 0 0 75px;
+    -moz-border-radius:75px 0 0 75px;
+    border-radius:75px 0 0 75px;
+    left: 0;
+    right: 0;
+    background-color: #5B5B5B;
+    z-index: 1;
+}
+.half_circle_l{
+    border-radius:75px 0 0 75px;
+    right: 50%;
+    background-color:#F39C12 ;
+    z-index: 0;
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+    -webkit-transition: transform 1s ease-out 0s;
+    -moz-transition: transform 1s ease-out 0s;
+    -o-transition: transform 1s ease-out 0s;
+    transition: transform 1s ease-out 0s;
+}
+.half_circle_r{
+    border-radius:0 75px 75px 0;
+    left: 50%;
+    background-color:#F39C12 ;
+    z-index: 0;
+}
+.half_circle_l,
+.half_circle_r,
+.qualification_icon:before{
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 50%;
+
+}
+/*========progress and====================*/
 .qualification_title{
     margin-bottom: 70px;
 }

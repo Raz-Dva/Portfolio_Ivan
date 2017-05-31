@@ -68,101 +68,30 @@ $(document).ready(function () {
             $(".about_block-top").removeClass("about_top_animation");
         }
 
-        $("#element").each(function () {
+        $(".test").each(function () {
             var element = this;
             var $element = $(element);
             var element_bounding = element.getBoundingClientRect();
-
+            if (element_bounding.top + 300 <= scroll)$element.addClass("animation")
             // console.log(element_bounding.top + " element_bounding");
-            // console.log(heightWin+" heightWin")
 
         });
-
+      
     });
-
-    /* var q = 100;
-
-     function tme(arg) {
-     q = 1 + arg;
-     // console.log(q);
-     }
-
-     var timerId = setInterval(function () {
-     tme(q)
-     }, 100);
-     // setTimeout(function(){console.log(q)}, 4000);
-
-     function draw() {
-     var canvas = document.getElementById("first_c");
-     var bezier = canvas.getContext('2d');
-     var x = 0;
-     x += 3;
-     bezier.fillStyle = "white";                                     // цвет заливки
-     bezier.fillRect(x, 120, 3, 3);
-
-     bezier.fillStyle = "white";                                     // цвет заливки
-     bezier.fillRect(200, 80, 3, 3);
-     }
-     draw();*/
+    // ===============progress===============
+    var half_circle_r = $(".half_circle_r");
+    var half_circle_l = $(".half_circle_l");
+    var circleMain = $(".qualification_icon");
 
 
-    var requestAnimationFrame = window.requestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.msRequestAnimationFrame;
-
-    var x = 0;
-    drawPlast();
-    /*function drawMinus() {
-        x -= 1;
-        console.log(x);
-        var mainCanvas = document.getElementById("first");
-        var mainContext = mainCanvas.getContext('2d');
-        mainContext.fillStyle = "white";
-        mainContext.fillRect(x, 120, 3, 3);
-
-        var requestM = requestAnimationFrame(drawMinus);
-        if (x == 0) {
-            cancelAnimationFrame(requestM);
-            // drawPlast();
-        }
-    }*/
-
-    function drawPlast() {
-        x += 1;
-        console.log(x);
-        var mainCanvas = document.getElementById("first");
-        var mainContext = mainCanvas.getContext('2d');
-        mainContext.fillStyle = "white";
-        mainContext.fillRect(x, 120, 3, 3);
-
-        // var requestP = requestAnimationFrame(drawPlast);
-        /*if (x == 10) {
-            cancelAnimationFrame(requestP);
-            drawMinus();
-        }*/
-    }
-
-
-    // bezier.lineTo(400, 300);
-    // bezier.lineTo(0, 300);
-    // bezier.closePath();
-    // bezier.fillStyle = "grey";
-    // bezier.fill();
-    /*canvas.each(function(){
-     var bezier = $(this).getContext('2d');
-     bezier.beginPath();
-     bezier.strokeStyle = "red";
-     bezier.moveTo(0, 100);
-     bezier.bezierCurveTo(115, 145, 215, 40, 400, 105);
-     bezier.lineTo(400, 300);
-     bezier.lineTo(0, 300);
-     bezier.closePath();
-     bezier.fillStyle = "grey";
-     bezier.fill();
-     bezier.stroke();
-
-     });*/
+    half_circle_l.each(function (e) {
+        var deg = $(this).attr("style");
+        var matr = deg.match(/[0-9]+deg/);
+        // alert(matr);
+        /* if(180 <= parseFloat(deg)){
+         alert("больше 180")
+         }*/
+    });
     //==============tooltip====
     // $('[data-toggle="tooltip"]').tooltip();
 
