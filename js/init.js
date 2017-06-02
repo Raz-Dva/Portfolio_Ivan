@@ -4,7 +4,9 @@
 $(document).ready(function () {
     var menuLeft = $("#menu_js"),
         j, k, i,
-        item_menu = menuLeft.children();
+        item_menu = menuLeft.children(),
+        booling = true,
+        heightWin = $(window).height();
 
 // ================btn down=======
     $(".link-scrolling").on("click", function (event) {
@@ -43,18 +45,12 @@ $(document).ready(function () {
             }
         }
     });
-    /* var animationRight = $(".personal_info_row:even");
-     var animationLeft = $(".personal_info_row:odd");
-     var allElem = $(".personal_info_row");
-     var NewElem = [];*/
-
     // =================menu scrolling=============
-    $(window).scroll(function () {
+   /* $(window).scroll(function () {
         var topMenu = 36;
         var valTop;
         var scroll = $(window).scrollTop();
-        var offsetTop = $("#about").offset().top;
-        var heightWin = $(window).height();
+
         // =========================
         if (topMenu > scroll) {
             valTop = topMenu - scroll;
@@ -63,91 +59,96 @@ $(document).ready(function () {
             valTop = 0;
         }
         $("#menu_js, #but_mnenu").css("top", valTop + "px");
-        // =============================
-        if ((offsetTop - heightWin) + 300 <= scroll) {
-            $(".about_block-top").removeClass("about_top_animation");
-        }
-
-        $("#element").each(function () {
+        // ===============add class animation==============
+        $(".anchor_animation").each(function () {
             var element = this;
             var $element = $(element);
             var element_bounding = element.getBoundingClientRect();
-
-            // console.log(element_bounding.top + " element_bounding");
-            // console.log(heightWin+" heightWin")
-
+            if (element_bounding.top <= scroll) {
+                $element.removeClass("animation");
+                // console.log(element_bounding.top + " element_bounding");
+                // circle.css("transform", "rotate(deegre + 'deg')");
+                // console.log(scroll);
+            }
         });
+    });*/
+
+    $(window).scroll(function () {
+        if(!booling)return false;
+
+        var scroll = $(window).scrollTop();
+        var progress = $("#progress");
+        var offsetProgress = progress.offset().top;
+        if (offsetProgress <= scroll + heightWin) {
+            var halfCircle = progress.find(".half_circle_l");
+
+            halfCircle.each(function () {
+                var rotation =$(this);
+                // var rotation = $(this).attr("data-rotate")*3.6;
+                var siblings = $(this).siblings(".percentages");
+                var par = $(this).parent(".qualification_block");
+
+                function numAnimate(count, deg, par) {
+                    var number = 1;
+                    var result = count.text();
+                    setInterval(function () {
+                        number++;
+                        if (number <= result) {
+                            count.text(number);
+                            deg.css({
+                                '-webkit-transform': 'rotate(' + (number*3.6) + 'deg)',
+                                '-moz-transform': 'rotate(' + (number*3.6) + 'deg)',
+                                '-ms-transform': 'rotate(' + (number*3.6) + 'deg)',
+                                'transform': 'rotate(' + (number*3.6) + 'deg)'
+                            });
+                            if(50 == number){
+                                par.addClass("more_half");
+                                console.log(number);
+                            }
+                            else{
+                                return false
+                            }
+                        }
+
+                    }, 8);
+                }
+
+                numAnimate(siblings, rotation, par);
+                 /*$(this).css({
+                    '-webkit-transform': 'rotate(' + rotation + 'deg)',
+                    '-moz-transform': 'rotate(' + rotation + 'deg)',
+                    '-ms-transform': 'rotate(' + rotation + 'deg)',
+                    'transform': 'rotate(' + rotation + 'deg)'
+                });
+                if (rotation) {
+                }*/
+            });
+            booling =false;
+        }
+
 
     });
 
-    /* Функция start будет запущена после полной загрузки документа и будет вызывать функцию
-     time через каждую секунду */
-var q =100;
-    function tme(arg) {
-        q=1+arg;
-        // console.log(q);
-    }
-
-    var timerId = setInterval(function() {
-        tme(q)
-    }, 100);
-    // setTimeout(function(){console.log(q)}, 4000);
-
-function draw(){
-    var canvas = document.getElementById("first_c");
-    var bezier = canvas.getContext('2d');
-    var x= 0;
-    x+=3;
-    bezier.beginPath();
-    bezier.strokeStyle = "red";
-    bezier.moveTo(0, 100);
-    bezier.bezierCurveTo(100, 120, 200, 80, 300, 100);
-    bezier.stroke();
-
-    bezier.fillStyle = "white";                                     // цвет заливки
-    bezier.fillRect(x, 120, 3, 3);
-
-    bezier.fillStyle = "white";                                     // цвет заливки
-    bezier.fillRect(200, 80, 3, 3);
-
-}
-    draw()
-
-
-    // bezier.lineTo(400, 300);
-    // bezier.lineTo(0, 300);
-    // bezier.closePath();
-    // bezier.fillStyle = "grey";
-    // bezier.fill();
-    /*canvas.each(function(){
-     var bezier = $(this).getContext('2d');
-     bezier.beginPath();
-     bezier.strokeStyle = "red";
-     bezier.moveTo(0, 100);
-     bezier.bezierCurveTo(115, 145, 215, 40, 400, 105);
-     bezier.lineTo(400, 300);
-     bezier.lineTo(0, 300);
-     bezier.closePath();
-     bezier.fillStyle = "grey";
-     bezier.fill();
-     bezier.stroke();
-
+    /*
+     half_circle_l.each(function (e) {
+     var deg = $(this).attr("style");
+     var matr = deg.match(/[0-9]+deg/);
      });*/
     //==============tooltip====
     // $('[data-toggle="tooltip"]').tooltip();
 
     //        ===============кнопка вверх==============
-    // var toTop = $('.to-top');
-    // toTop.click(function () {
-    //     $('body,html').animate({scrollTop: 0}, 800);
-    // });
-    // $(window).scroll(function () {
-    //     if ($(this).scrollTop() != 0) {
-    //         $('.to-top').fadeIn();
-    //     } else {
-    //         $('.to-top').fadeOut();
-    //     }
-    // });
+    var toTop = $('.to-top');
+    toTop.click(function () {
+        $('body,html').animate({scrollTop: 0}, 800);
+    });
+    $(window).scroll(function () {
+        if ($(this).scrollTop() != 0) {
+            $('.to-top').fadeIn();
+        } else {
+            $('.to-top').fadeOut();
+        }
+    });
     // ===================masked input==============
     // $('.mask-phone').mask('+ 38 (999) 999-99-99');
 });
