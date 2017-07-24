@@ -2,21 +2,12 @@
  * Created by user pc on 27.02.2017.
  */
 $(document).ready(function () {
+
     var menuLeft = $("#menu_js"),
         j, k, i,
         item_menu = menuLeft.children(),
         booling = true,
         heightWin = $(window).height();
-
-// ================btn down=======
-    $(".link-scrolling").on("click", function (event) {
-        event.preventDefault();
-        var hash = this.hash;
-        $('html, body').animate({
-            scrollTop: ($(hash).offset().top)
-        }, 500);
-    });
-
     // ==========button menu===============
     $(".button_menu").click(function () {
         $(this).toggleClass("button_cross");
@@ -28,7 +19,10 @@ $(document).ready(function () {
                 j++;
                 k++;
                 $(item_menu[i]).css({
+                    "-webkit-animation-delay": j / 10 + "s",
                     "animation-delay": j / 10 + "s",
+                    "-o-transition-delay": (k / 10) + "s",
+                    "-webkit-transition-delay": (k / 10) + "s",
                     "transition-delay": (k / 10) + "s"
                 });
             }
@@ -39,26 +33,21 @@ $(document).ready(function () {
                 j++;
                 k += 10;
                 $(".menu_visible").find(item_menu[i]).css({
+                    "-webkit-animation-delay": (j / 10) + "s",
                     "animation-delay": (j / 10) + "s",
-                    "transition-delay": ((k) / 100) + "s"
+                    "-o-transition-delay": (k / 100) + "s",
+                    "-webkit-transition-delay": (k / 100) + "s",
+                    "transition-delay": (k / 100) + "s"
                 });
             }
         }
     });
     // =================menu scrolling=============
-   /* $(window).scroll(function () {
-        var topMenu = 36;
-        var valTop;
+    $(window).scroll(function () {
         var scroll = $(window).scrollTop();
+        var progress = $("#progress");
+        var offsetProgress = progress.offset().top;
 
-        // =========================
-        if (topMenu > scroll) {
-            valTop = topMenu - scroll;
-        }
-        else {
-            valTop = 0;
-        }
-        $("#menu_js, #but_mnenu").css("top", valTop + "px");
         // ===============add class animation==============
         $(".anchor_animation").each(function () {
             var element = this;
@@ -66,77 +55,26 @@ $(document).ready(function () {
             var element_bounding = element.getBoundingClientRect();
             if (element_bounding.top <= scroll) {
                 $element.removeClass("animation");
-                // console.log(element_bounding.top + " element_bounding");
-                // circle.css("transform", "rotate(deegre + 'deg')");
-                // console.log(scroll);
             }
         });
-    });*/
-
-    $(window).scroll(function () {
-        if(!booling)return false;
-
-        var scroll = $(window).scrollTop();
-        var progress = $("#progress");
-        var offsetProgress = progress.offset().top;
-        if (offsetProgress <= scroll + heightWin) {
-            var halfCircle = progress.find(".half_circle_l");
-
-            halfCircle.each(function () {
-                var rotation =$(this);
-                // var rotation = $(this).attr("data-rotate")*3.6;
-                var siblings = $(this).siblings(".percentages");
-                var par = $(this).parent(".qualification_block");
-
-                function numAnimate(count, deg, par) {
-                    var number = 1;
-                    var result = count.text();
-                    setInterval(function () {
-                        number++;
-                        if (number <= result) {
-                            count.text(number);
-                            deg.css({
-                                '-webkit-transform': 'rotate(' + (number*3.6) + 'deg)',
-                                '-moz-transform': 'rotate(' + (number*3.6) + 'deg)',
-                                '-ms-transform': 'rotate(' + (number*3.6) + 'deg)',
-                                'transform': 'rotate(' + (number*3.6) + 'deg)'
-                            });
-                            if(50 == number){
-                                par.addClass("more_half");
-                                console.log(number);
-                            }
-                            else{
-                                return false
-                            }
-                        }
-
-                    }, 8);
-                }
-
-                numAnimate(siblings, rotation, par);
-                 /*$(this).css({
-                    '-webkit-transform': 'rotate(' + rotation + 'deg)',
-                    '-moz-transform': 'rotate(' + rotation + 'deg)',
-                    '-ms-transform': 'rotate(' + rotation + 'deg)',
-                    'transform': 'rotate(' + rotation + 'deg)'
+        // ================easypiechart диаграмма==============
+        if (!booling)return false;
+        if (offsetProgress <= scroll + heightWin - (120)) {
+            $(function () {
+                $('.chart').easyPieChart({
+                    scaleColor: '#FF00AE',
+                    lineWidth: 15,
+                    lineCap: ' but',
+                    barColor: '#FFA616',
+                    trackColor: "#606060",
+                    size: 190,
+                    scaleLength: 0,
+                    animate: 1500
                 });
-                if (rotation) {
-                }*/
             });
-            booling =false;
+            booling = false;
         }
-
-
     });
-
-    /*
-     half_circle_l.each(function (e) {
-     var deg = $(this).attr("style");
-     var matr = deg.match(/[0-9]+deg/);
-     });*/
-    //==============tooltip====
-    // $('[data-toggle="tooltip"]').tooltip();
-
     //        ===============кнопка вверх==============
     var toTop = $('.to-top');
     toTop.click(function () {
@@ -149,6 +87,178 @@ $(document).ready(function () {
             $('.to-top').fadeOut();
         }
     });
-    // ===================masked input==============
-    // $('.mask-phone').mask('+ 38 (999) 999-99-99');
+    // ============================== ajax form ===============
+    // ============================== валидация формы ajax form ===============
+    $('input#name, input#email, textarea#message, input#phone').unbind().blur(function () {
+
+        // Для удобства записываем обращения к атрибуту и значению каждого поля в переменные
+        var id = $(this).attr('id');
+        var val = $(this).val();
+
+        // После того, как поле потеряло фокус, перебираем значения id, совпадающие с id данного поля
+        switch (id) {
+            // Проверка поля "Имя"
+            case 'name':
+                var rv_name = /^[a-zA-Zа-яА-Я][a-zA-Zа-яА-Я]/; // используем регулярное выражение
+
+                // Eсли длина имени больше 2 символов, оно не пустое и удовлетворяет рег. выражению,
+                // то добавляем этому полю класс .not_error,
+                // и ниже в контейнер для ошибок выводим слово " Принято", т.е. валидация для этого поля пройдена успешно
+
+                if (val.length > 2 && val != '' && rv_name.test(val)) {
+                    $(this).removeClass('error').addClass('not_error');
+                    $(this).next('.help-block').text('Accepted')
+                        .css('color', 'green')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+
+                // Иначе, мы удаляем класс not-error и заменяем его на класс error, говоря о том что поле содержит ошибку валидации,
+                // и ниже в наш контейнер выводим сообщение об ошибке и параметры для верной валидации
+
+                else {
+                    $(this).removeClass('not_error').addClass('error');
+                    $(this).next('.help-block')
+                        .html('поле "Имя" обязательно для заполнения,<br> ' +
+                            'длина имени должна составлять не менее 2 символов,' +
+                            '<br> поле должно содержать только русские или латинские буквы')
+                        .css('color', 'red')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+                break;
+
+            // Проверка email
+            case 'email':
+                var rv_email = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
+                if (val != '' && rv_email.test(val)) {
+                    $(this).removeClass('error').addClass('not_error');
+                    $(this).next('.help-block').text('Accepted')
+                        .css('color', 'green')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+                else {
+                    $(this).removeClass('not_error').addClass('error');
+                    $(this).next('.help-block')
+                        .html('поле "Email" обязательно для заполнения,<br>' +
+                            'поле должно содержать правильный email-адрес<br>')
+                        .css('color', 'red')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+                break;
+
+            // Проверка tell
+            case 'phone':
+                // var rv_tell =/^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$/; +38(044)555-55-55
+                var rv_tell = /\d[^a-zA-Zа-яА-Я]/;
+                if (val != '' && rv_tell.test(val)) {
+                    $(this).removeClass('error').addClass('not_error');
+                    $(this).next('.help-block').text('Accepted')
+                        .css('color', 'green')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+                else {
+                    $(this).removeClass('not_error').addClass('error');
+                    $(this).next('.help-block')
+                        .html('поле "Phone" обязательно для заполнения,<br>' +
+                            'поле должно содержать только цифры<br>')
+                        .css('color', 'red')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+                break;
+
+            // Проверка поля "Сообщение"
+            case 'message':
+                if (val != '' && val.length < 5000) {
+                    $(this).removeClass('error').addClass('not_error');
+                    $(this).next('.help-block').text('Accepted')
+                        .css('color', 'green')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+                else {
+                    $(this).removeClass('not_error').addClass('error');
+                    $(this).next('.help-block').html('поле "Текст письма" обязательно для заполнения, <br>' +
+                        'не более 5000 символов')
+                        .css('color', 'red')
+                        .animate({'paddingLeft': '10px'}, 300)
+                        .animate({'paddingLeft': '5px'}, 400);
+                }
+                break;
+
+        } // end switch(...)
+
+    }); // end blur()
+
+    $("#form").submit(function () { //устанавливаем событие отправки для формы с id=form
+        var data = $(this).serialize(); //собераем все данные из формы
+        var form = $('#form').find('.swap-animation');
+        var btnSend = $('#btn-send');
+        function resultSuccess(){
+            btnSend.removeAttr("disabled").closest(".wrap_btn_animate").removeClass("active-animate");
+            form.addClass('swap').find('.icon-swap').addClass('icon-check-circle-o')
+                .next('.submit-text').addClass('text-success').text('Ваше сообщение отправлено удачно!');
+            setTimeout(function(){
+                form.removeClass('swap')
+            }, 2010);
+        }
+        function resultError(){
+            btnSend.removeAttr("disabled").closest(".wrap_btn_animate").removeClass("active-animate");
+            form.addClass('swap').find('.icon-swap').addClass('icon-ban')
+                .next('.submit-text').addClass('text-danger').text('Ваше сообщение не отправлено!');
+            btnSend.next('.send-text-error').text('Ваше сообщение не отправлено!');
+            setTimeout(function(){
+                form.removeClass('swap')
+            }, 2010);
+
+        }
+        if ($('.not_error').length == 4) {
+            var ajaxx = $.ajax({
+                url: "send.php",
+                type: "POST",
+                data: data,
+                dataType: "text",
+                beforeSend: function () {
+                    btnSend.attr('disabled', 'disabled').closest(".wrap_btn_animate").addClass("active-animate");
+                },
+                success: function (result) {
+                    if(result == 'true') {
+                        resultSuccess();
+                    }
+                    else{
+                        resultError();
+                    }
+                },
+                error: function () {
+                    resultError();
+                    // alert("Ошибка выполнения");
+                },
+                complete: function () {
+                    $("#form input, #form textarea").each(function(){
+                        $(this).val("");
+                    });
+                    // alert("Завершилась отправка");
+                }
+            });
+            console.log(ajaxx.status);
+            return false;
+        }
+        else {
+            return false;
+
+        }
+    });
+    // ==================якоря для меню ===========
+    $(".link-scrolling").on("click", function (event) {
+        event.preventDefault();
+        var id  = $(this).attr('href'),
+            top = $(id).offset().top;
+        $('body,html').animate({scrollTop: top}, 400);
+    });
+    // ==================placeholder ============
+    $('input').placeholder();
 });

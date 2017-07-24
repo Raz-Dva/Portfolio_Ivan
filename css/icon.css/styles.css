@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "untitled-font-5";
-  src:url("../fonts/font.icon/untitled-font-5.eot");
-  src:url("../fonts/font.icon/untitled-font-5.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/font.icon/untitled-font-5.woff") format("woff"),
-    url("../fonts/font.icon/untitled-font-5.ttf") format("truetype"),
-    url("../fonts/font.icon/untitled-font-5.svg#untitled-font-5") format("svg");
+  src:url("../../fonts/font.icon/untitled-font-5.eot");
+  src:url("../../fonts/font.icon/untitled-font-5.eot?#iefix") format("embedded-opentype"),
+    url("../../fonts/font.icon/untitled-font-5.woff") format("woff"),
+    url("../../fonts/font.icon/untitled-font-5.ttf") format("truetype"),
+    url("../../fonts/font.icon/untitled-font-5.svg#untitled-font-5") format("svg");
   font-weight: normal;
   font-style: normal;
 
@@ -139,4 +139,46 @@
 }
 .icon-sass-icon:before {
   content: "\4b";
+}
+.icon-adaptive-icon-2:before {
+  content: "\48";
+}
+.icon-drawing:before {
+  content: "\49";
+}
+.icon-583347ca8f6c7ee058111edf-120-designer-icons-1:before {
+  content: "\4a";
+}
+.icon-583347ca8f6c7ee058111edf-120-designer-icons1:before {
+  content: "\4c";
+}
+.icon-583347ca8f6c7ee058111edf-120-designer-icons2:before {
+  content: "\4d";
+}
+.icon-perfect-pixel:before {
+  content: "\4f";
+}
+.icon-compress:before {
+  content: "\4e";
+}
+.icon-check:before {
+  content: "\50";
+}
+.icon-check-1:before {
+  content: "\51";
+}
+.icon-x:before {
+  content: "\52";
+}
+.icon-ban:before {
+  content: "\53";
+}
+.icon-check-circle:before {
+  content: "\54";
+}
+.icon-check-circle-o:before {
+  content: "\55";
+}
+.icon-rocket:before {
+  content: "\56";
 }
