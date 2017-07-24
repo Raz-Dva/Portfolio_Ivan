@@ -733,6 +733,9 @@ header > .container {
     border: 1px solid #616161;
     border-radius: 3px;
     position: relative;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .qualification_block_img img {
@@ -1355,6 +1358,9 @@ footer {
     header{
         height: auto;
     }
+    .header_content{
+        padding-top: 80px;
+    }
 }
 @media (max-width: 1199px) {
 
@@ -1372,7 +1378,7 @@ footer {
         font-size: 23px;
     }
     .wrap_skill{
-        min-height: 316px;
+        min-height: 284px;
     }
     .title_skills{
         font-size: 26px;
@@ -1386,12 +1392,63 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .menu_item{
         font-size: 18px;
     }
+    .wrap_skill {
+        min-height: inherit;
+        height: auto;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+    .progress_block{
+        width: 100%;
+    }
+    .footer-line {
+        display: block;
+    }
+    .personal_info_row,
+    .form-send-block{
+        width: 100%;
+        max-width: inherit;
+    }
+    .send-block{
+        overflow: hidden;
+    }
+    .img_persone{
+        width: 280px;
+        height: auto;
+    }
+    .text-danger.send-text-error,
+    .my-info{
+        display: block;
+    }
+    .send-block_title,
+    .view_height  h1,
+    .view_height  h2,
+    .header_h,
+    .title_skills .icon_title{
+        font-size: 32px;
+    }
+    .title_skills .icon_title{
+        top:-3px;
+    }
+    .title_skills{
+        font-size: 22px;
+    }
+    .about_text,
+    .my-info,
+    .send-block_text{
+        font-size: 18px;
+    }
 
+    .form-send i.icon-x,
+    .form-send i.icon-check{
+        display: none;
+    }
 }
